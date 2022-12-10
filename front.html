@@ -1,0 +1,43 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Input, Form, FormGroup, Label } from 'reactstrap';
+
+const SearchForm = () => {
+  return (
+    <Form>
+      <FormGroup>
+        <Label for="location">Location:</Label>
+        <Input type="text" name="location" id="location" placeholder="Enter a location or address" />
+      </FormGroup>
+      <FormGroup>
+        <Label for="type">Bike Type:</Label>
+        <Input type="select" name="type" id="type">
+          <option>Mountain</option>
+          <option>Road</option>
+          <option>City</option>
+          <option>Electric</option>
+          <option>Kids</option>
+        </Input>
+      </FormGroup>
+      <FormGroup>
+        <Label for="price">Price Range:</Label>
+        <Input type="number" name="minPrice" id="minPrice" placeholder="Min" />
+        <Input type="number" name="maxPrice" id="maxPrice" placeholder="Max" />
+      </FormGroup>
+      <Button color="primary" block>Search</Button>
+    </Form>
+  );
+}
+
+const HomePage = () => {
+  return (
+    <div>
+      <h1>Welcome to XYZ Bike Rentals</h1>
+      <p>Are you looking for a bike to rent? Look no further! Our online rental system makes it easy to find the perfect bike for your needs.</p>
+      <SearchForm />
+      <Link to="/bikes"><Button color="secondary" block>View All Bikes</Button></Link>
+    </div>
+  );
+}
+
+export default HomePage;
