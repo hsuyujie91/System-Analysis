@@ -33,6 +33,21 @@ https://templatemo.com/tm-563-seo-dream
 </head>
 
 <body>
+<script>
+    const thisForm = document.getElementById('contact');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(thisForm).entries()
+        const response = await fetch('https://reqres.in/api/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+    
+        const result = await response.json();
+        console.log(result)
+    });
+</script>
 
   <!-- ***** Preloader Start ***** the selection bar-->
   <div id="js-preloader" class="js-preloader">
@@ -98,7 +113,7 @@ https://templatemo.com/tm-563-seo-dream
                   </div>
                    <div class="col-lg-6">
                     <fieldset>
-                      <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                      <input type="text" name="account" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
                     </fieldset>
                   </div>
 
