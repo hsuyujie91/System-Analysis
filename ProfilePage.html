@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <title>Profile</title>
+    <title>Cuporrow</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-  <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
-  <link rel="stylesheet" href="assets/css/animated.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
 <!--
 
 TemplateMo 563 SEO Dream
@@ -30,7 +30,16 @@ https://templatemo.com/tm-563-seo-dream
 -->
 
 </head>
-<style>
+<!--
+
+TemplateMo 563 SEO Dream
+
+https://templatemo.com/tm-563-seo-dream
+
+-->
+
+</head>
+<!-- <style>
 
  {
   display: inline-block;
@@ -226,9 +235,22 @@ span {
   width: 100%;
 }
 
-  </style>
-
+</style> !-->
 <body>
+
+  <!-- ***** Preloader Start ***** the selection bar-->
+  <div id="js-preloader" class="js-preloader"> 
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
@@ -237,19 +259,19 @@ span {
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
-              <h4>Cuporrow <img src="assets/images/logo-icon.png" alt="" width=25px height=19px></h4>
+              <h4>Cuporrow</h4>
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html#about">Rent!</a></li>
-              <li class="scroll-to-section"><a href="index.html#services">History</a></li>
-              <li class="scroll-to-section"><a href="index.html#portfolio">Profile</a></li>
-              <li class="scroll-to-section"><a href="index.html#top" class="active">Contact us</a></li>
+              <li class="scroll-to-section"><a href="rent_page.html#about">Rent!</a></li>
+              <li class="scroll-to-section"><a href="History.html">History</a></li>
+              <li class="scroll-to-section"><a href="ProfilePage.html">Profile</a></li>
+              <li class="scroll-to-section"><a href="index.html#contact" class="active">Contact us</a></li>
               <li class="scroll-to-section"><div class="main-blue-button"><a>Welcome! 'Username'</a></div></li> 
-            </ul>        
+            </ul>         
             <a class='menu-trigger'>
-              <span>Menu</span>
+                <span>Menu</span>
             </a>
             <!-- ***** Menu End ***** -->
           </nav>
@@ -257,13 +279,31 @@ span {
       </div>
     </div>
   </header>
+  <!-- ***** Header Area End ***** -->
 
-  <div id="contact" class="contact-us section">
+  <body>
+    <div id="contact" class="contact-us section">
     <div class="container"> 
-      <div class="profile" style="display: flex;">
-        <img src="/Users/kunhaowu/Desktop/System-Analysis/assets/images/profile.png" height="10" width="10">
-        
-          <button class="add-picture-button">Update Picture</button>
+      <style type="text/css">
+        .buttons{
+          position: absolute;
+          right: 10px;
+          zoom: 3;
+          background-color: #c8ffbe; /* sets the background color to a shade of green */
+          color: white; /* sets the text color to white */
+          font-size: 18px; /* sets the font size to 18px */
+          font-family: 'Roboto', sans-serif; /* sets the font to Roboto */
+          border: none; /* removes the border */
+          border-radius: 4px; /* adds rounded corners to the button */
+          padding: 5px 10px; /* adds padding to the button */
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* adds a shadow to the button */
+          transition: all 0.3s; /* adds a transition effect to the button */
+        }
+      </style>
+      <div class="buttons">       
+          <button class="add-picture-button">Update Picture</button><br>
+          <br>
+          <br>
           <button id="renew-membership-button">Renew Membership</button>
         
       </div>
@@ -276,14 +316,22 @@ span {
         <div class="col-lg-8">
         
           <div class="right-content">
-            <h4 style="text-align: right;"><br><br><br><br><br><br><br>Username</h4>
-            <p style="text-align: right;">Email: @nccu.edu.tw </p>
-            <p style="text-align: right;">Membership Status: Active</p>
-            <p style="text-align: right;">Membership Expiration Date: 01/01/2023</p>
+            <h4 style="text-align: left;"><br><br><br><br><br><br><br>Username</h4>
+            <p style="text-align: left">Email: @nccu.edu.tw </p>
+            <p style="text-align: left;">Membership Status: Active</p>
+            <p style="text-align: left;">Membership Expiration Date: 01/01/2023</p>
           </div>
         </div>
-      </div
-  
-   
+      </div>
+  </body>
 
-  
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/imagesloaded.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+</body>
+</html>
