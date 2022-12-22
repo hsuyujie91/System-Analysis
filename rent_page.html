@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <title>Login Page</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,14 +25,6 @@
   <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
   <link rel="stylesheet" href="assets/css/animated.css">
   <link rel="stylesheet" href="assets/css/owl.css">
-<!--
-
-TemplateMo 563 SEO Dream
-
-https://templatemo.com/tm-563-seo-dream
-
--->
-
 </head>
 
 <body>
@@ -70,74 +66,35 @@ https://templatemo.com/tm-563-seo-dream
               <div class="col-lg-6 offset-lg-3">
                 <div class="section-heading">
                   <h6></h6>
-                  <h2>
-                    
+                  <h2>  
                     Rent Now
                   </h2>
+                  <section class="cameras">
+                    <h2>Cameras</h2>
+                    <ul>
+                      <li v-if="cameras.length === 0" class="empty">No cameras found</li>
+                      <li v-for="camera in cameras">
+                        <span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" class="active">{{ formatName(camera.name) }}</span>
+                        <span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
+                          <a @click.stop="selectCamera(camera)">{{ formatName(camera.name) }}</a>
+                        </span>
+                      </li>
+                    </ul>
+                  </section>
                   <div>
                     <div class="row">
-                        
-                      
-
-                      <button id="scan-button">Scan QR code</button>
-
-  <script>
-    document.getElementById("scan-button").addEventListener("click", function() {
-      Quagga.init({
-        inputStream: {
-          type: "LiveStream",
-          constraints: {
-            width: 480,
-            height: 320,
-            facingMode: "environment"
-          }
-        },
-        locator: {
-          patchSize: "medium",
-          halfSample: true
-        },
-        numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-        decoder: {
-          readers: ["code_128_reader"]
-        },
-        locate: true
-      }, function(err) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log("Initialization finished. Ready to start");
-        Quagga.start();
-      });
-
-      Quagga.onProcessed(function(result) {
-        var drawingCtx = Quagga.canvas.ctx.overlay,
-          drawingCanvas = Quagga.canvas.dom.overlay;
-
-        if (result) {
-          if (result.boxes) {
-            drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-            result.boxes.filter(function (box) {
-              return box !== result.box;
-            }).forEach(function (box) {
-              Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-            });
-          }
-
-          if (result.box) {
-            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-          }
-
-          if (result.codeResult && result.codeResult.code) {
-            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-          }
-        }
-      });
-
-      Quagga.onDetected(function(result) {
-        console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
-      });
-    });
-  </script>
+                      <section class="scans">
+                        <h2>Scans</h2>
+                        <ul v-if="scans.length === 0">
+                          <li class="empty">No scans yet</li>
+                        </ul>
+                        <transition-group name="scans" tag="ul">
+                          <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>
+                        </transition-group>
+                      </section>
+                      <div class="preview-container">
+                        <video id="preview"></video>
+                      </div>
 
                       <div>
                         <fieldset>
@@ -147,5 +104,5 @@ https://templatemo.com/tm-563-seo-dream
                       </div>
 
 
-                
+
 
