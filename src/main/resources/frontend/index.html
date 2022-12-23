@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
   <head>
 
@@ -13,14 +13,14 @@
     <title>Cuporrow</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
-    <link rel="stylesheet" href="assets/css/animated.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
+    <link rel="stylesheet" href="/css/templatemo-seo-dream.css" th:href="@{/css/templatemo-seo-dream.css}">
+    <link rel="stylesheet" href="/css/animated.css" th:href="@{/css/animated.css}">
+    <link rel="stylesheet" href="/css/owl.css" th:href="@{/css/owl.css}">
 <!--
 
 TemplateMo 563 SEO Dream
@@ -53,7 +53,7 @@ https://templatemo.com/tm-563-seo-dream
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a th:href="@{/user/index}" class="logo">
               <h4>Cuporro</h4>
             </a>
             <!-- ***** Logo End ***** -->
@@ -63,7 +63,7 @@ https://templatemo.com/tm-563-seo-dream
               <li class="scroll-to-section"><a href="#features">Introduction</a></li>
               <li class="scroll-to-section"><a href="#about">About Us</a></li>
               <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><div class="main-blue-button"><a href="loginpage.html" target="_blank">Log In / Sign Up</a></div></li> 
+              <li class="scroll-to-section"><div class="main-blue-button"><a th:href="@{/user/login}" target="_blank">Log In / Sign Up</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -101,7 +101,7 @@ https://templatemo.com/tm-563-seo-dream
                   </div>
                   <div class="col-lg-12">
                     <div class="main-green-button scroll-to-section">
-                      <a href="loginpage.html" target="_blank">Log In / Sign Up</a>
+                      <a th:href="@{/user/login}" target="_blank">Log In / Sign Up</a>
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ https://templatemo.com/tm-563-seo-dream
             </div>
             <div class="col-lg-6">
               <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="assets/images/banner-right-image.png" alt="">
+                <img th:src="@{/assets/images/banner-right-image.png}" alt="">
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ https://templatemo.com/tm-563-seo-dream
       <div class="row">
         <div class="col-lg-6">
           <div class="left-image wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-            <img src="assets/images/about-left-image.png" alt="">
+            <img th:src="@{assets/images/about-left-image.png}" alt="">
           </div>
         </div>
         <div class="col-lg-6 align-self-center wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
@@ -209,7 +209,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/service-icon-01.png" alt="">
+                  <img th:src="@{/assets/images/service-icon-01.png}" alt="">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -226,7 +226,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/service-icon-02.png" alt="">
+                  <img th:src="@{/assets/images/service-icon-02.png}" alt="">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -243,7 +243,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/service-icon-03.png" alt="">
+                  <img th:src="@{assets/images/service-icon-03.png}" alt="">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -260,7 +260,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/service-icon-04.png" alt="">
+                  <img th:src="@{assets/images/service-icon-04.png}" alt="">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -306,7 +306,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img id = "profile" src="assets/images/Jefferson.png" alt="">
+                  <img id = "profile" th:src="@{/images/Jefferson.png}" src="/assets/images/Jefferson.png" alt="">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -323,7 +323,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/Lawrence.jpg" alt="" id ="profile">
+                  <img th:src="@{/images/Lawrence.jpg}" src="/assets/images/Lawrence.jpg" alt="" id ="profile">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -340,7 +340,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/Jessica.jpg" alt="" id = "profile">
+                  <img th:src="@{/images/Jessica.jpg}" src="/assets/images/Jessica.jpg" alt="" id = "profile">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -356,7 +356,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/Seb.jpg" alt=""  id="profile">
+                  <img th:src="@{/images/Seb.jpg}" src="/assets/images/Seb.jpg" alt=""  id="profile">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -373,7 +373,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/Ray.png" alt="" id = "profile">
+                  <img th:src="@{/images/Ray.png}" src="/assets/images/Ray.png" alt="" id = "profile">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -390,7 +390,7 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon">
-                  <img src="assets/images/hanna.jpg" alt="" id = "profile">
+                  <img th:src="@{/images/hanna.jpg}" src="/assets/images/hanna.jpg" alt="" id = "profile">
                 </div>
               </div>
               <div class="col-lg-8">
@@ -407,12 +407,12 @@ https://templatemo.com/tm-563-seo-dream
   </div>
 
   <!-- Scripts -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/animation.js"></script>
-  <script src="assets/js/imagesloaded.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script th:src="@{/vendor/jquery/jquery.min.js}" href="/vendor/jquery/jquery.min.js"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}" href="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/js/owl-carousel.js}" href="/assets/js/owl-carousel.js"></script>
+  <script th:src="@{/js/animation.js}" href="/assets/js/animation.js"></script>
+  <script th:src="@{/js/imagesloaded.js}" href="/assets/js/imagesloaded.js"></script>
+  <script th:src="@{/js/custom.js}" href="/assets/js/custom.js"></script>
 
 </body>
 </html>

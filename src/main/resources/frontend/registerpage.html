@@ -1,28 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet">
 
-    <title>Register Page</title>
+  <title>Register Page</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
 
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
-    <link rel="stylesheet" href="assets/css/animated.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-<!--
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
+  <link rel="stylesheet" href="/css/templatemo-seo-dream.css" th:href="@{/css/templatemo-seo-dream.css}">
+  <link rel="stylesheet" href="/css/animated.css" th:href="@{/css/animated.css}">
+  <link rel="stylesheet" href="/css/owl.css" th:href="@{/css/owl.css}">
+  <!--
 
 TemplateMo 563 SEO Dream
 
@@ -33,21 +34,21 @@ https://templatemo.com/tm-563-seo-dream
 </head>
 
 <body>
-<script>
+  <script>
     const thisForm = document.getElementById('contact');
     thisForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const formData = new FormData(thisForm).entries()
-        const response = await fetch('https://reqres.in/api/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(formData))
-        });
-    
-        const result = await response.json();
-        console.log(result)
+      e.preventDefault();
+      const formData = new FormData(thisForm).entries()
+      const response = await fetch('https://reqres.in/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
+
+      const result = await response.json();
+      console.log(result)
     });
-</script>
+  </script>
 
   <!-- ***** Preloader Start ***** the selection bar-->
   <div id="js-preloader" class="js-preloader">
@@ -75,15 +76,17 @@ https://templatemo.com/tm-563-seo-dream
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="index.html#features">Introduction</a></li>
-              <li class="scroll-to-section"><a href="index.html#about">About Us</a></li>
-              <li class="scroll-to-section"><a href="index.html#services">Services</a></li>
-              <li class="scroll-to-section"><a href="index.html#portfolio">Portfolio</a></li>
-              <li class="scroll-to-section"><div class="main-blue-button"><a href="#contact">Log In / Sign Up</a></div></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#top}" class="active">Home</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#features}">Introduction</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#about}">About Us</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#services}">Services</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#portfolio}">Portfolio</a></li>
+              <li class="scroll-to-section">
+                <div class="main-blue-button"><a href="#contact">Log In / Sign Up</a></div>
+              </li>
             </ul>
             <a class='menu-trigger'>
-                <span>Menu</span>
+              <span>Menu</span>
             </a>
             <!-- ***** Menu End ***** -->
           </nav>
@@ -111,9 +114,10 @@ https://templatemo.com/tm-563-seo-dream
                       <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
                     </fieldset>
                   </div>
-                   <div class="col-lg-6">
+                  <div class="col-lg-6">
                     <fieldset>
-                      <input type="text" name="account" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                      <input type="text" name="account" id="email" pattern="[^ @]*@[^ @]*"
+                        placeholder="Your Email Address" required="">
                     </fieldset>
                   </div>
 
@@ -135,19 +139,19 @@ https://templatemo.com/tm-563-seo-dream
                   <ul>
                     <li>
                       <div class="icon">
-                        <img src="assets/images/contact-icon-01.png" alt="email icon">
+                        <img th:src="@{/images/contact-icon-01.png}" alt="email icon">
                       </div>
                       <a href="#">tuyuju@nccu.edu.tw</a>
                     </li>
                     <li>
                       <div class="icon">
-                        <img src="assets/images/contact-icon-02.png" alt="phone">
+                        <img th:src="@{/images/contact-icon-02.png}" alt="phone">
                       </div>
                       <a href="#">(02) 2939-3091</a>
                     </li>
                     <li>
                       <div class="icon">
-                        <img src="assets/images/contact-icon-03.png" alt="location">
+                        <img th:src="@{/images/contact-icon-03.png}" alt="location">
                       </div>
                       <a href="#">No. 64, Sec. 2, ZhiNan Rd., Wenshan District, Taipei City 11605, Taiwan R.O.C.</a>
                     </li>
@@ -166,20 +170,24 @@ https://templatemo.com/tm-563-seo-dream
       <div class="row">
         <div class="col-lg-12">
           <p>Copyright © 2021 SEO Dream Co., Ltd. All Rights Reserved.
-          
-          <br>Web Designed by <a rel="nofollow" href="https://templatemo.com" title="free CSS templates">TemplateMo</a></p>
+
+            <br>Web Designed by <a rel="nofollow" href="https://templatemo.com"
+              title="free CSS templates">TemplateMo</a>
+          </p>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/animation.js"></script>
-  <script src="assets/js/imagesloaded.js"></script>
-  <script src="assets/js/custom.js"></script>
+  
+  <script th:src="@{/vendor/jquery/jquery.min.js}" href="/vendor/jquery/jquery.min.js"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}" href="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/js/owl-carousel.js}" href="/assets/js/owl-carousel.js"></script>
+  <script th:src="@{/js/animation.js}" href="/assets/js/animation.js"></script>
+  <script th:src="@{/js/imagesloaded.js}" href="/assets/js/imagesloaded.js"></script>
+  <script th:src="@{/js/custom.js}" href="/assets/js/custom.js"></script>
 
 </body>
+
 </html>
