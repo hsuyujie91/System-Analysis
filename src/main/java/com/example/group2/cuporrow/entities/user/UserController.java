@@ -1,5 +1,6 @@
 package com.example.group2.cuporrow.entities.user;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,13 +47,14 @@ public class UserController {
    }
 
 
-   @PostMapping(value = "/login", produces = "application/json")
-   public ResponseEntity<?> login(@Valid @RequestBody User user) {
+   @PostMapping(value = "/login")
+   public String login(@Valid User user, HttpSession session) {
       String token = service.loginAndGetToken(user.getAccount(), user.getPassword());
       if (!(token == null)) {
-         return new ResponseEntity<>(String.format("{\"token\": \"%s\"}", token), HttpStatus.OK);
+         session.setAttribute("token", token);
+         return "rent_page";
       }
-      return new ResponseEntity<String>("Unable to login", HttpStatus.NOT_FOUND);
+      return "Unable to login";
    }
 
 }
