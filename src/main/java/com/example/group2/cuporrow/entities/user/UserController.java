@@ -35,7 +35,7 @@ public class UserController {
       return "registerpage";
    }
 
-   @PostMapping(value = "/create")
+   @PostMapping(value = "/register")
    public String createUser(@Valid User user, RedirectAttributes redirectAttributes) {
       User newUser = service.register(user.getName(), user.getAccount(), user.getPassword());
       if (newUser != null) {

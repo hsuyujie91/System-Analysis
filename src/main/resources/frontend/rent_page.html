@@ -8,20 +8,21 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet">
 
   <title>Login Page</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-seo-dream.css">
-  <link rel="stylesheet" href="assets/css/animated.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-<!--
+  <link rel="stylesheet" href="/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
+  <link rel="stylesheet" href="/css/templatemo-seo-dream.css" th:href="@{/css/templatemo-seo-dream.css}">
+  <link rel="stylesheet" href="/css/animated.css" th:href="@{/css/animated.css}">
+  <link rel="stylesheet" href="/css/owl.css" th:href="@{/css/owl.css}">
+  <!--
 
 TemplateMo 563 SEO Dream
 
@@ -50,8 +51,10 @@ https://templatemo.com/tm-563-seo-dream
               <li class="scroll-to-section"><a href="index.html#about">About Us</a></li>
               <li class="scroll-to-section"><a href="index.html#services">Services</a></li>
               <li class="scroll-to-section"><a href="index.html#portfolio">Portfolio</a></li>
-              <li class="scroll-to-section"><div class="main-blue-button"><a href="#contact">Log In / Sign Up</a></div></li> 
-            </ul>        
+              <li class="scroll-to-section">
+                <div class="main-blue-button"><a href="#contact">Log In / Sign Up</a></div>
+              </li>
+            </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
             </a>
@@ -72,73 +75,73 @@ https://templatemo.com/tm-563-seo-dream
                 <div class="section-heading">
                   <h6></h6>
                   <h2>
-                    
+
                     Rent Now
                   </h2>
                   <div>
                     <div class="row">
-                        
-                      
+
+
 
                       <button id="scan-button">Scan QR code</button>
 
-  <script>
-    document.getElementById("scan-button").addEventListener("click", function() {
-      Quagga.init({
-        inputStream: {
-          type: "LiveStream",
-          constraints: {
-            width: 480,
-            height: 320,
-            facingMode: "environment"
-          }
-        },
-        locator: {
-          patchSize: "medium",
-          halfSample: true
-        },
-        numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-        decoder: {
-          readers: ["code_128_reader"]
-        },
-        locate: true
-      }, function(err) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log("Initialization finished. Ready to start");
-        Quagga.start();
-      });
+                      <script>
+                        document.getElementById("scan-button").addEventListener("click", function () {
+                          Quagga.init({
+                            inputStream: {
+                              type: "LiveStream",
+                              constraints: {
+                                width: 480,
+                                height: 320,
+                                facingMode: "environment"
+                              }
+                            },
+                            locator: {
+                              patchSize: "medium",
+                              halfSample: true
+                            },
+                            numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
+                            decoder: {
+                              readers: ["code_128_reader"]
+                            },
+                            locate: true
+                          }, function (err) {
+                            if (err) {
+                              return console.log(err);
+                            }
+                            console.log("Initialization finished. Ready to start");
+                            Quagga.start();
+                          });
 
-      Quagga.onProcessed(function(result) {
-        var drawingCtx = Quagga.canvas.ctx.overlay,
-          drawingCanvas = Quagga.canvas.dom.overlay;
+                          Quagga.onProcessed(function (result) {
+                            var drawingCtx = Quagga.canvas.ctx.overlay,
+                              drawingCanvas = Quagga.canvas.dom.overlay;
 
-        if (result) {
-          if (result.boxes) {
-            drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-            result.boxes.filter(function (box) {
-              return box !== result.box;
-            }).forEach(function (box) {
-              Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-            });
-          }
+                            if (result) {
+                              if (result.boxes) {
+                                drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+                                result.boxes.filter(function (box) {
+                                  return box !== result.box;
+                                }).forEach(function (box) {
+                                  Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
+                                });
+                              }
 
-          if (result.box) {
-            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-          }
+                              if (result.box) {
+                                Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: "#00F", lineWidth: 2 });
+                              }
 
-          if (result.codeResult && result.codeResult.code) {
-            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-          }
-        }
-      });
+                              if (result.codeResult && result.codeResult.code) {
+                                Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: 'red', lineWidth: 3 });
+                              }
+                            }
+                          });
 
-      Quagga.onDetected(function(result) {
-        console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
-      });
-    });
-  </script>
+                          Quagga.onDetected(function (result) {
+                            console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
+                          });
+                        });
+                      </script>
 
                       <div>
                         <fieldset>
@@ -147,6 +150,16 @@ https://templatemo.com/tm-563-seo-dream
                         </fieldset>
                       </div>
 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
-                
-
+</html>
