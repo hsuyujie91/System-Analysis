@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
     rel="stylesheet">
 
-  <title>Login Page</title>
+  <title>Renting</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="/css/templatemo-seo-dream.css" th:href="@{/css/templatemo-seo-dream.css}">
   <link rel="stylesheet" href="/css/animated.css" th:href="@{/css/animated.css}">
   <link rel="stylesheet" href="/css/owl.css" th:href="@{/css/owl.css}">
+  <script type="text/javascript" src="../static/js/instascan.min.js" th:src="@{/js/instascan.min.js}"></script>
+
   <!--
 
 TemplateMo 563 SEO Dream
@@ -40,17 +42,17 @@ https://templatemo.com/tm-563-seo-dream
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="index.html" th:href="@{/user/index}" class="logo">
               <h4>Cuporrow <img src="assets/images/logo-icon.png" alt="" width=25px height=19px></h4>
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="index.html#features">Introduction</a></li>
-              <li class="scroll-to-section"><a href="index.html#about">About Us</a></li>
-              <li class="scroll-to-section"><a href="index.html#services">Services</a></li>
-              <li class="scroll-to-section"><a href="index.html#portfolio">Portfolio</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#top}" class="active">Home</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#features}">Introduction</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#about}">About Us</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#services}">Services</a></li>
+              <li class="scroll-to-section"><a th:href="@{/user/index#portfolio}">Portfolio</a></li>
               <li class="scroll-to-section">
                 <div class="main-blue-button"><a href="#contact">Log In / Sign Up</a></div>
               </li>
@@ -65,6 +67,7 @@ https://templatemo.com/tm-563-seo-dream
     </div>
   </header>
 
+
   <div id="contact" class="contact-us section">
     <div class="container">
       <div class="row">
@@ -73,84 +76,41 @@ https://templatemo.com/tm-563-seo-dream
             <div class="row">
               <div class="col-lg-6 offset-lg-3">
                 <div class="section-heading">
-                  <h6></h6>
-                  <h2>
-
-                    Rent Now
-                  </h2>
-                  <div>
-                    <div class="row">
-
-
-
-                      <button id="scan-button">Scan QR code</button>
-
-                      <script>
-                        document.getElementById("scan-button").addEventListener("click", function () {
-                          Quagga.init({
-                            inputStream: {
-                              type: "LiveStream",
-                              constraints: {
-                                width: 480,
-                                height: 320,
-                                facingMode: "environment"
-                              }
-                            },
-                            locator: {
-                              patchSize: "medium",
-                              halfSample: true
-                            },
-                            numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-                            decoder: {
-                              readers: ["code_128_reader"]
-                            },
-                            locate: true
-                          }, function (err) {
-                            if (err) {
-                              return console.log(err);
-                            }
-                            console.log("Initialization finished. Ready to start");
-                            Quagga.start();
+                  <div style="
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+                    width: 100%;
+                    overflow: hidden;
+                    ">
+                    <video id="preview" autoplay="true"></video>
+                    <button id="scan-button">Scan QR code</button>
+                    <script type="text/javascript">
+                      var video = document.querySelector("#preview");
+                      if (navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia({ video: true })
+                          .then(function (stream) {
+                            video.srcObject = stream;
+                          })
+                          .catch(function (err0r) {
+                            console.log("Something went wrong!");
                           });
-
-                          Quagga.onProcessed(function (result) {
-                            var drawingCtx = Quagga.canvas.ctx.overlay,
-                              drawingCanvas = Quagga.canvas.dom.overlay;
-
-                            if (result) {
-                              if (result.boxes) {
-                                drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-                                result.boxes.filter(function (box) {
-                                  return box !== result.box;
-                                }).forEach(function (box) {
-                                  Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
-                                });
-                              }
-
-                              if (result.box) {
-                                Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: "#00F", lineWidth: 2 });
-                              }
-
-                              if (result.codeResult && result.codeResult.code) {
-                                Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: 'red', lineWidth: 3 });
-                              }
-                            }
-                          });
-
-                          Quagga.onDetected(function (result) {
-                            console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
-                          });
-                        });
-                      </script>
-
-                      <div>
-                        <fieldset>
-                          <br>
-                          <a href="mainpage.html" target="_blank">Back to main page</a>
-                        </fieldset>
-                      </div>
-
-                    </div>
+                      }
+                      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+                      scanner.addListener('scan', function (content) {
+                        console.log(content);
+                      });
+                      Instascan.Camera.getCameras().then(function (cameras) {
+                        if (cameras.length > 0) {
+                          scanner.start(cameras[0]);
+                        } else {
+                          console.error('No cameras found.');
+                        }
+                      }).catch(function (e) {
+                        console.error(e);
+                      });
+                    </script>
                   </div>
                 </div>
               </div>
