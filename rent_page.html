@@ -14,7 +14,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
   <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-
+  <script type="text/javascript" src="../src/instascan.min.js"></script>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +69,7 @@
                   <h2>
                     Rent Now
                   </h2>
-                  <section class="cameras">
+                  <!-- <section class="cameras">
                     <h2>Cameras</h2>
                     <ul>
                       <li v-if="cameras.length === 0" class="empty">No cameras found</li>
@@ -80,20 +80,38 @@
                         </span>
                       </li>
                     </ul>
-                  </section>
+                  </section> -->
                   <div>
                     <div class="row">
-                      <section class="scans">
-                        <h2>Scans</h2>
-                        <ul v-if="scans.length === 0">
-                          <li class="empty">No scans yet</li>
-                        </ul>
-                        <transition-group name="scans" tag="ul">
-                          <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>
-                        </transition-group>
-                      </section>
                       <div class="preview-container">
-                        <video id="preview"></video>
+                                           <video id="preview" autoplay="true"></video>
+                    <button id="scan-button">Scan QR code</button>
+                    <script type="text/javascript">
+                      var video = document.querySelector("#preview");
+                      if (navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia({ video: true })
+                          .then(function (stream) {
+                            video.srcObject = stream;
+                          })
+                          .catch(function (err0r) {
+                            console.log("Something went wrong!");
+                          });
+                      }
+                      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+                      scanner.addListener('scan', function (content) {
+                        console.log("detect!");
+                        console.log(content);
+                      });
+                      Instascan.Camera.getCameras().then(function (cameras) {
+                        if (cameras.length > 0) {
+                          scanner.start(cameras[0]);
+                        } else {
+                          console.error('No cameras found.');
+                        }
+                      }).catch(function (e) {
+                        console.error(e);
+                      });
+                    </script>
                       </div>
 
                       <div>
