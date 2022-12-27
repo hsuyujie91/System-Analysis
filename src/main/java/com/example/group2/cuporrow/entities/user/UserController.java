@@ -4,12 +4,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,11 +43,11 @@ public class UserController {
       return "redirect:register";
    }
 
-
    @PostMapping(value = "/login")
    public String login(@Valid User user, HttpSession session) {
       String token = service.loginAndGetToken(user.getAccount(), user.getPassword());
       if (!(token == null)) {
+         session.setAttribute("account", user.getAccount());
          session.setAttribute("token", token);
          return "rent_page";
       }
