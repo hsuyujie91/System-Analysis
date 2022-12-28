@@ -43,6 +43,11 @@ public class OrderService {
         return order;
     }
 
+    public boolean isReturn(User user, int bottleId) {
+        Optional<Order> optOrderInDB = orderRepo.findOrderByUserAndBottleId(user.getId(), bottleId);
+        return optOrderInDB.isPresent();
+    }
+
     public Order returnBottle(User user, int bottleId) {
         Optional<Order> optOrderInDB = orderRepo.findOrderByUserAndBottleId(user.getId(), bottleId);
         if (optOrderInDB.isPresent()) {

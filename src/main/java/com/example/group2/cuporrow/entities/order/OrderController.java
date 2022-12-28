@@ -84,14 +84,25 @@ public class OrderController {
         }
     }
 
-    @PostMapping(value = "/create", produces = "application/json")
-    public ResponseEntity<String> placeOrder(@RequestBody PlaceOrderRequest body) {
+    @PostMapping(value = "/rent", produces = "application/json")
+    public ResponseEntity<String> placeOrder(PlaceOrderRequest body) {
         User user = userService.validByTokenAndGetUser(body.getAccount(), body.getToken());
         if (user == null)
             return ErrorResponse.notAuthorized();
-        Order order = service.makeOrder(user, body.getBottleId());
-        if (order != null) {
-            return new ResponseEntity<String>(String.format("Borrow time: %s", order.getBorrowTime()), HttpStatus.OK);
+        if (!service.isReturn(user, body.getBottleId())) {
+            Order order = service.makeOrder(user, body.getBottleId());
+            if (order != null) {
+                return new ResponseEntity<String>(String.format("Borrow time: %s", order.getBorrowTime()),
+                        HttpStatus.OK);
+            }
+        } else {
+            Order order = service.returnBottle(user, body.getBottleId());
+            if (order != null) {
+                return new ResponseEntity<String>(
+                        String.format("{\"start\": \"%s\", \"end\": \"%s\", \"bill\": \"%d\"}",
+                                order.getBorrowTime(), order.getReturnTime(), order.getBill()),
+                        HttpStatus.OK);
+            }
         }
         return new ResponseEntity<String>("Unable to place order.", HttpStatus.NOT_FOUND);
     }
@@ -107,7 +118,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/return", produces = "application/json")
-    public ResponseEntity<?> returnBottle(@RequestBody PlaceOrderRequest body) {
+    public ResponseEntity<?> returnBottle(PlaceOrderRequest body) {
         User user = userService.validByTokenAndGetUser(body.getAccount(), body.getToken());
         if (user == null)
             return ErrorResponse.notAuthorized();
