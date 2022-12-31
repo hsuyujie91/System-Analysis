@@ -24,7 +24,6 @@
   <link rel="stylesheet" href="/css/owl.css" th:href="@{/css/owl.css}">
 
   <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-  <!-- <script type="text/javascript" src="../static/js/instascan.min.js" th:src="@{/js/instascan.min.js}"></script> -->
 </head>
 
 <body>
@@ -79,12 +78,31 @@
                     overflow: hidden;
                     ">
                     <!-- hidden textfield -->
-                    <input type="hidden" name="account" th:attr="value = ${session.account}"/>
-                    <input type="hidden" name="token" th:attr="value = ${session.token}"/>
-                    <input type="hidden" id="bottleid" name="bottleId"/>
+                    <input type="hidden" id="account" th:value="${session.account}">
+                    <input type="hidden" id="token" th:value="${session.token}">
                     <video id="preview" autoplay="true"></video>
                     <button id="scan-button">Scan QR code</button>
                     <script type="text/javascript">
+                      async function apiRequest(bottleId) {
+                        var account = document.getElementById("account").value;
+                        var token = document.getElementById("token").value;
+                        const data = JSON.stringify({ "account": account, "token": token, "bottleId": bottleId });
+                        const response = await fetch('http://localhost:8080/order/rent', {
+                          method: 'POST',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          body: data
+                        });
+                        const jsonData = await response.json();
+                        if (response.status === 200) {
+                          alert(JSON.stringify(jsonData));
+                        } else {
+                          alert("error: " + response.status);
+                        }
+                      }
+
                       var video = document.querySelector("#preview");
                       if (navigator.mediaDevices.getUserMedia) {
                         navigator.mediaDevices.getUserMedia({ video: true })
@@ -97,11 +115,12 @@
                       }
                       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
                       scanner.addListener('scan', function (content) {
-                        console.log(content);
+                        // console.log(content);
+                        const bottleId = parseInt(content.split(":")[1]);
                         var isConfirm = confirm("Are you sure?" + content);
-                        const bottleId = content.split(" ")[1];
-                        console.log(bottleId);
-                        document.getElementById("bottleid").value = bottleId;
+                        if (isConfirm) {
+                          apiRequest(bottleId);
+                        }
                       });
                       Instascan.Camera.getCameras().then(function (cameras) {
                         if (cameras.length > 0) {

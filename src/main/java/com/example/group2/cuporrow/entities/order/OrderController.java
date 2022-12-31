@@ -85,14 +85,14 @@ public class OrderController {
     }
 
     @PostMapping(value = "/rent", produces = "application/json")
-    public ResponseEntity<String> placeOrder(PlaceOrderRequest body) {
+    public ResponseEntity<String> placeOrder(@RequestBody PlaceOrderRequest body) {
         User user = userService.validByTokenAndGetUser(body.getAccount(), body.getToken());
         if (user == null)
             return ErrorResponse.notAuthorized();
         if (!service.isReturn(user, body.getBottleId())) {
             Order order = service.makeOrder(user, body.getBottleId());
             if (order != null) {
-                return new ResponseEntity<String>(String.format("Borrow time: %s", order.getBorrowTime()),
+                return new ResponseEntity<String>(String.format("{\"borrow_time\": \"%s\"}", order.getBorrowTime()),
                         HttpStatus.OK);
             }
         } else {
@@ -118,7 +118,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/return", produces = "application/json")
-    public ResponseEntity<?> returnBottle(PlaceOrderRequest body) {
+    public ResponseEntity<?> returnBottle(@RequestBody PlaceOrderRequest body) {
         User user = userService.validByTokenAndGetUser(body.getAccount(), body.getToken());
         if (user == null)
             return ErrorResponse.notAuthorized();
